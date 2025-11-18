@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -7,6 +7,12 @@ import TodoList from "./components/TodoList";
 import EditTodo from "./components/EditTodo";
 import CreateTodo from "./components/CreateTodo";
 import CreateUser from "./components/CreateUser";
+import Login from "./components/Login";
+import setAuthToken from './utils/setAuthToken';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function App() {
   return (
@@ -19,6 +25,7 @@ function App() {
           <Route path="/edit/:id" element={<EditTodo />} />
           <Route path="/create" element={<CreateTodo />} />
           <Route path="/user" element={<CreateUser />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </Router>

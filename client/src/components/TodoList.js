@@ -5,7 +5,7 @@ import axios from 'axios';
 const Todo = (props) => (
   <tr>
     <td className={props.todo.completed ? 'completed' : ''}>{props.todo.description}</td>
-    <td className={props.todo.completed ? 'completed' : ''}>{props.todo.user}</td>
+    <td className={props.todo.completed ? 'completed' : ''}>{props.todo.user.username}</td>
     <td>
       <Link to={"/edit/"+props.todo._id}>Edit</Link> | <a href="#" onClick={() => { props.deleteTodo(props.todo._id) }}>delete</a>
     </td>
@@ -16,7 +16,7 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/todos/')
+    axios.get('/todos/')
       .then(response => {
         setTodos(response.data);
       })
@@ -26,7 +26,7 @@ const TodoList = () => {
   }, []);
 
   const deleteTodo = (id) => {
-    axios.delete('http://localhost:5000/todos/'+id)
+    axios.delete('/todos/'+id)
       .then(response => { console.log(response.data)});
 
     setTodos(todos.filter(el => el._id !== id));

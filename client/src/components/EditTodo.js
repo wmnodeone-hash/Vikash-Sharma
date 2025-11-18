@@ -8,7 +8,7 @@ const EditTodo = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/todos/'+id)
+    axios.get('/todos/'+id)
       .then(response => {
         setDescription(response.data.description);
         setCompleted(response.data.completed);
@@ -25,7 +25,7 @@ const EditTodo = () => {
       completed,
     };
     console.log(todo);
-    axios.post('http://localhost:5000/todos/update/' + id, todo)
+    axios.post('/todos/update/' + id, todo)
       .then(res => console.log(res.data));
     window.location = '/';
   };

@@ -7,7 +7,7 @@ const CreateTodo = () => {
   const [user, setUser] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/users/')
+    axios.get('/users/')
       .then(response => {
         if (response.data.length > 0) {
           setUsers(response.data.map(user => user.username));
@@ -29,7 +29,7 @@ const CreateTodo = () => {
 
     console.log(todo);
 
-    axios.post('http://localhost:5000/todos/add', todo)
+    axios.post('/todos/add', todo)
       .then(res => console.log(res.data));
 
     window.location = '/';
